@@ -9,6 +9,8 @@
 class Controller
 {
 
-
+protected function error($message){
+    $_POST['Errors'][] = $message;
+}
 
 }

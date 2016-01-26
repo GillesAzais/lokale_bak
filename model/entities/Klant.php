@@ -30,7 +30,7 @@ class Klant{
      * @param $str_passwoord
      * @param $bool_geblokeerd
      */
-    public function __construct($str_email, $str_naam, $str_voornaam, $str_straat, $str_huisnr, $str_postcode, $str_woonplaats, $str_passwoord, $bool_geblokeerd)
+    public function __construct($str_email, $str_naam, $str_voornaam, $str_straat, $str_huisnr, $str_postcode, $str_woonplaats, $bool_geblokeerd)
     {
         $this->str_email = $str_email;
         $this->str_naam = $str_naam;
@@ -39,7 +39,7 @@ class Klant{
         $this->str_huisnr = $str_huisnr;
         $this->str_postcode = $str_postcode;
         $this->str_woonplaats = $str_woonplaats;
-        $this->str_passwoord = $str_passwoord;
+        $this->str_passwoord = $this->generatePassword();
         $this->bool_geblokeerd = $bool_geblokeerd;
     }
 
@@ -171,5 +171,13 @@ class Klant{
         $this->str_passwoord = $str_passwoord;
     }
 
+    public function generatePassword(){
+        $arr = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890';
+        $arr = str_split($arr);
+        for($i = 0; $i < mt_rand(10,20);$i++){
+             shuffle($arr);
+        }
+        return substr(implode("",$arr),0,5);
+    }
 
 }

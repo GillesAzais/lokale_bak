@@ -8,6 +8,7 @@
 define('APPLICATION_PATH', "model" );
 require('controller/Controller.php');
 require('routeHelper.php');
+require('view/_partials/partialFunctions.php');
 require('controller/Loader.php');
 require('controller/FrontController.php');
 

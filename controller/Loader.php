@@ -46,13 +46,6 @@ class Loader
         }
     }
 
-    private function _getTemplatePart($name, $path)
-    {
-        $name = strtolower($name);
-        return $this->_getFile($name, $path);
-
-    }
-
     private function _getFile($name, $path)
     {
         $file = $path . $this->_addExtension($name);
