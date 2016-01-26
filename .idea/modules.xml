@@ -3,6 +3,8 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/../Lokale_Bakkerij/.idea/TEST_PHP.iml" filepath="$PROJECT_DIR$/../Lokale_Bakkerij/.idea/TEST_PHP.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/lokale_bak.iml" filepath="$PROJECT_DIR$/.idea/lokale_bak.iml" />
     </modules>
   </component>
 </project>
+

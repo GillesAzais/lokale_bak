@@ -4,10 +4,8 @@ class Loader
 {
     private static $instance = null;
     private $_model_path = 'model/';
-    private $_view_path = 'view/';
-    private $_layout_path = 'view/_layouts/';
-    private $_partial_path = 'view/_partials/';
-    private $_controller_path = 'controller/';
+
+    private $_controller_path = 'controller/controllers/';
 
     private function __construct()
     {
@@ -25,6 +23,7 @@ class Loader
     public function getController($controllerName)
     {
         $controllerFile = $this->_getFile($controllerName, $this->_controller_path);
+
         require_once($controllerFile);
 
         return new $controllerName();
@@ -47,21 +46,6 @@ class Loader
         }
     }
 
-    public function getLayout($layout)
-    {
-        return $this->_getTemplatePart($layout, $this->_layout_path);
-    }
-
-    public function getPartial($partial)
-    {
-        return $this->_getTemplatePart($partial, $this->_partial_path);
-    }
-
-    public function getView($view)
-    {
-        return $this->_getTemplatePart($view, $this->_view_path);
-    }
-
     private function _getTemplatePart($name, $path)
     {
         $name = strtolower($name);
@@ -71,7 +55,8 @@ class Loader
 
     private function _getFile($name, $path)
     {
-        $file = APPLICATION_PATH . $path . $this->_addExtension($name);
+        $file = $path . $this->_addExtension($name);
+
 
         if (file_exists($file)) {
             return $file;
