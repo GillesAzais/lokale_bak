@@ -6,7 +6,7 @@
  * Time: 1:46 PM
  */
 
-class Product {
+class Product extends Entity{
     private $int_productNr;
     private $str_productnaam;
     private $dec_prijs;

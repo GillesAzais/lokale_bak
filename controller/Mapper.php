@@ -15,7 +15,8 @@ class Mapper{
 
     public function __construct($table,$type)
     {
-        $this->db = db::getInstance();
+        $this->_db = db::getInstance();
+
         $this->_table = $table;
         $this->_type = $type;
     }
@@ -23,9 +24,11 @@ class Mapper{
     public function add($object)
     {
         $values = $object->toArray();
-        $fieldNames = array_keys($values);
+
+        $fieldNames =array_keys($values);
 
         $queryArguments = $this->createQueryArguments($values);
+
         $query = "INSERT INTO $this->_table (" . implode(', ', $fieldNames) . ") VALUES (:" . implode(', :', $fieldNames) . ")";
 
         $this->_db->execute($query, $queryArguments);
@@ -111,7 +114,8 @@ class Mapper{
 
     private function createQueryArguments($values)
     {
-        $queryArguments = array();
+
+        $queryArguments = [];
 
         foreach ($values as $key => $value) {
             $queryArguments[':' . $key] = $value;

@@ -6,7 +6,7 @@
  * Time: 2:04 PM
  */
 
-class BestelController{
+class BestelController extends Controller{
 
     public function index(){
         include('view/bestel.php');

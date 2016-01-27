@@ -6,17 +6,17 @@
  * Time: 1:46 PM
  */
 
-class Klant{
+class Klant extends Entity{
 
-    private $str_email;
-    private $str_naam;
-    private $str_voornaam;
-    private $str_straat;
-    private $str_huisnr;
-    private $str_postcode;
-    private $str_woonplaats;
-    private $str_passwoord;
-    private $bool_geblokeerd;
+    protected $str_email;
+    protected $str_naam;
+    protected $str_vnaam;
+    protected $str_straat;
+    protected $str_huisnr;
+    protected $str_postcode;
+    protected $str_woonplaats;
+    protected $str_passwoord;
+    protected $bool_blocked;
 
     /**
      * Klant constructor.
@@ -34,13 +34,13 @@ class Klant{
     {
         $this->str_email = $str_email;
         $this->str_naam = $str_naam;
-        $this->str_voornaam = $str_voornaam;
+        $this->str_vnaam = $str_voornaam;
         $this->str_straat = $str_straat;
         $this->str_huisnr = $str_huisnr;
         $this->str_postcode = $str_postcode;
         $this->str_woonplaats = $str_woonplaats;
         $this->str_passwoord = $this->generatePassword();
-        $this->bool_geblokeerd = $bool_geblokeerd;
+        $this->bool_blocked = false;
     }
 
     /**

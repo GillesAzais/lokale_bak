@@ -3,7 +3,7 @@
 class Loader
 {
     private static $instance = null;
-    private $_model_path = 'model/';
+    private $_model_path = 'model/entities/';
 
     private $_controller_path = 'controller/controllers/';
 
@@ -20,6 +20,7 @@ class Loader
         return self::$instance;
     }
 
+
     public function getController($controllerName)
     {
         $controllerFile = $this->_getFile($controllerName, $this->_controller_path);
@@ -35,6 +36,7 @@ class Loader
         $modelMapper = $modelName . 'Mapper';
 
         $modelFile = $this->_getFile($modelName, $this->_model_path);
+
         $modelMapperFile = $this->_getFile($modelMapper, $this->_model_path);
 
         require_once($modelFile);

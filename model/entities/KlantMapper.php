@@ -6,7 +6,7 @@
  * Time: 11:23 AM
  */
 
-class KlantenMapper extends Mapper{
+class KlantMapper extends Mapper{
 
     public function __construct()
     {

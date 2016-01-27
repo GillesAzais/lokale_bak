@@ -8,7 +8,7 @@
 
 class Db{
 
-    private $dsn = 'mysql:host=localhost;dbname=testdb';
+    private $dsn = 'mysql:host=localhost;dbname=lokale_bakkerij';
     private $username = 'root';
     private $pass ='';
     private $dbh;
@@ -33,6 +33,7 @@ class Db{
         }
 
     public function execute($sql,$params){
+
         if(!is_array($params)){
             $params = [$params];
         }

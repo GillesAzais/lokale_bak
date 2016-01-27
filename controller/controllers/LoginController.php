@@ -6,7 +6,7 @@
  * Date: 1/26/2016
  * Time: 11:19 AM
  */
-class loginController
+class loginController extends Controller
 {
 
 

@@ -6,7 +6,7 @@
  * Time: 1:46 PM
  */
 
-class Bestellingen
+class Bestellingen extends Entity
 {
 
     private $obj_klant;

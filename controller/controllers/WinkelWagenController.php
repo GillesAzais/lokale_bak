@@ -6,7 +6,7 @@
  * Time: 2:04 PM
  */
 
-class WinkelWagenConctroller{
+class WinkelWagenConctroller extends Controller{
 
     public function index(){
         include('view/winkelWagen.php');

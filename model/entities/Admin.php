@@ -6,7 +6,7 @@
  * Time: 1:46 PM
  */
 
-class Admin {
+class Admin extends Entity{
 
     private $str_username;
     private $str_passw;

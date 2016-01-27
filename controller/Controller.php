@@ -9,6 +9,12 @@
 class Controller
 {
 
+    protected $loader;
+
+    public function __construct(){
+        $this->loader = Loader::getInstance();
+
+    }
 protected function error($message){
     $_POST['Errors'][] = $message;
 }
