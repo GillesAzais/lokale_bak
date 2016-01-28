@@ -7,62 +7,59 @@
  */
 
 class Product extends Entity{
-    private $int_productNr;
-    private $str_productnaam;
-    private $dec_prijs;
+    private $productId;
+    private $productNaam;
+    private $prijs;
 
     /**
-     * Product constructor.
-     * @param $int_productNr
-     * @param $str_productnaam
-     * @param $dec_prijs
+     * @return mixed
      */
-    public function __construct($int_productNr, $str_productnaam, $dec_prijs)
+    public function getProductId()
     {
-        $this->int_productNr = $int_productNr;
-        $this->str_productnaam = $str_productnaam;
-        $this->dec_prijs = $dec_prijs;
+        return $this->productId;
+    }
+
+    /**
+     * @param mixed $productId
+     */
+    public function setProductId($productId)
+    {
+        $this->productId = $productId;
     }
 
     /**
      * @return mixed
      */
-    public function getIntProductNr()
+    public function getProductNaam()
     {
-        return $this->int_productNr;
+        return $this->productNaam;
+    }
+
+    /**
+     * @param mixed $productNaam
+     */
+    public function setProductNaam($productNaam)
+    {
+        $this->productNaam = $productNaam;
     }
 
     /**
      * @return mixed
      */
-    public function getStrProductnaam()
+    public function getPrijs()
     {
-        return $this->str_productnaam;
+        return $this->prijs;
     }
 
     /**
-     * @param mixed $str_productnaam
+     * @param mixed $prijs
      */
-    public function setStrProductnaam($str_productnaam)
+    public function setPrijs($prijs)
     {
-        $this->str_productnaam = $str_productnaam;
+        $this->prijs = $prijs;
     }
 
-    /**
-     * @return mixed
-     */
-    public function getDecPrijs()
-    {
-        return $this->dec_prijs;
-    }
 
-    /**
-     * @param mixed $dec_prijs
-     */
-    public function setDecPrijs($dec_prijs)
-    {
-        $this->dec_prijs = $dec_prijs;
-    }
 
 
 }

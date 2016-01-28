@@ -180,4 +180,8 @@ class Klant extends Entity{
         return substr(implode("",$arr),0,5);
     }
 
+    public function encryptPass(){
+        $this->setStrPasswoord(sha1($this->getStrPasswoord()));
+    }
+
 }

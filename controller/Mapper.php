@@ -9,9 +9,9 @@
 
 class Mapper{
 
-    private $_db;
-    private $_table;
-    private $_type;
+    protected $_db;
+    protected $_table;
+    protected $_type;
 
     public function __construct($table,$type)
     {
@@ -26,7 +26,8 @@ class Mapper{
         $values = $object->toArray();
 
         $fieldNames =array_keys($values);
-
+pr($values);
+        pr($fieldNames);
         $queryArguments = $this->createQueryArguments($values);
 
         $query = "INSERT INTO $this->_table (" . implode(', ', $fieldNames) . ") VALUES (:" . implode(', :', $fieldNames) . ")";
@@ -80,14 +81,16 @@ class Mapper{
     }
 
     public function getAll(){
-
         $qry = "SELECT * FROM $this->_table" ;
+
+
         return $this->_db->queryAll($qry,$this->_type);
     }
 
     public function get($email){
         $qry ="SELECT * FROM $this->_table WHERE email = ?";
-        return $this->_db->queryOne($qry,$this->_table,$this->_type,$email);
+
+        return $this->_db->queryOne($qry,$this->_type,$email);
     }
 
     private function createFieldnames($values)

@@ -6,5 +6,10 @@ function footer(){
     include('view/_partials/footer.php');
 }
 function menu(){
-    include('menu.php');
+    if(!isset($_SESSION['loggedIn']) || !$_SESSION['loggedIn']){
+        include('menu.php');
+    }else if ($_SESSION['loggedIn']){
+        include('loggedInMenu.php');
+
+    }
 }

@@ -10,7 +10,7 @@ class KlantMapper extends Mapper{
 
     public function __construct()
     {
-        parent::__construct('klanten', 'Klant');
+        parent::__construct('klanten','Klant');
     }
 
 }

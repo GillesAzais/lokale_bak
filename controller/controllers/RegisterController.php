@@ -27,8 +27,8 @@ class RegisterController extends Controller{
 
 
         $bool = null;
-        if(!isset ($_POST['email']) || !isset($_POST['naam']) || !isset($_POST['voornaam']) || !isset($_POST['straat']) ||
-            !isset($_POST['huisnr'])|| !isset($_POST['postcode']) || !isset($_POST['woonplaats'])) {
+        if(empty($_POST['email']) || empty($_POST['naam']) || empty($_POST['voornaam']) || empty($_POST['straat']) ||
+            empty($_POST['huisnr'])|| empty($_POST['postcode']) || empty($_POST['woonplaats'])) {
             $this->error('Gelieven alle velden in te vullen');
            $bool = false;
         }else if(strlen($_POST['email']) > 30 || strlen($_POST['naam']) > 20 || strlen($_POST['voornaam']) > 20 || strlen($_POST['straat']) > 50 || strlen($_POST['postcode']) > 4 || strlen($_POST['woonplaats']) > 50 ){
@@ -37,6 +37,7 @@ class RegisterController extends Controller{
         }else{
             $bool = true;
         }
+
         return $bool;
 
 }
@@ -44,10 +45,12 @@ class RegisterController extends Controller{
         if($this->registerValidation()){
 
             $klant = new Klant($_POST['email'],$_POST['naam'],$_POST['voornaam'],$_POST['straat'],$_POST['straat'],$_POST['huisnr'],$_POST['postcode'],$_POST['woonplaats']);
+            $_GET['pass']=($klant->getStrPasswoord());
+            $klant->encryptPass();
             $this->klantenMapper->add($klant);
+            $klant = null;
             include('view/confirm.php');
         }else{
-
             include('view/error.php');
 
         }

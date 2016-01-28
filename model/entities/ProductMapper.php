@@ -7,4 +7,8 @@
  */
 class ProductMapper extends Mapper{
 
+    public function __construct()
+    {
+        parent::__construct('producten', 'Product');
+    }
 }

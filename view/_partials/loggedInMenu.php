@@ -18,18 +18,10 @@
                     <a href="<?php echo baseUrl('contact/index')?>">Contact</a>
                 </li>
                 <li>
-                    <a href="<?php echo baseUrl('register/index')?>">Registreer</a>
+                    <a href="<?php echo baseUrl('bestel/index')?>">Bestel</a>
                 </li>
             </ul>
-            <form class="navbar-form navbar-right"  method="post" action="<?php echo baseUrl('login/login') ?>">
-                <div class="form-group">
-                    <input type="text" class="form-control" name="email" placeholder="Gebruikersnaam">
-                </div>
-                <div class="form-group">
-                    <input type="text" class="form-control" name="pass" placeholder="Passwoord">
-                </div>
-                <button type="submit" class="btn btn-info btn-sm">aanmelden</button>
-            </form>
+
         </div>
         <!-- /.navbar-collapse -->
     </div>

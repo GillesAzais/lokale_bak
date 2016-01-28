@@ -34,8 +34,8 @@ class Loader
     {
         $modelName = ucfirst($modelName);
         $modelMapper = $modelName . 'Mapper';
-
         $modelFile = $this->_getFile($modelName, $this->_model_path);
+
 
         $modelMapperFile = $this->_getFile($modelMapper, $this->_model_path);
 
@@ -51,7 +51,6 @@ class Loader
     private function _getFile($name, $path)
     {
         $file = $path . $this->_addExtension($name);
-
 
         if (file_exists($file)) {
             return $file;

@@ -54,6 +54,7 @@ class Db{
     }
 
     public function queryOne($sql,$type,$args = []){
+
         $stmt = $this->execute($sql,$args);
         return $stmt->fetchObject($type);
     }

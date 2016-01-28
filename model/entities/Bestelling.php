@@ -6,11 +6,11 @@
  * Time: 1:46 PM
  */
 
-class Bestellingen extends Entity
+class Bestelling extends Entity
 {
 
-    private $obj_klant;
-    private $arr_producten;
+    private $id;
+    private $email;
     private $str_bestellingsDatum;
     private $str_afhaalDatum = null;
     private $str_status;
@@ -23,10 +23,9 @@ class Bestellingen extends Entity
      * @param null $str_afhaalDatum
      * @param $str_status
      */
-    public function __construct($obj_klant, $arr_producten, $str_bestellingsDatum, $str_afhaalDatum, $str_status)
+    public function __construct($email, $str_bestellingsDatum, $str_afhaalDatum, $str_status)
     {
-        $this->obj_klant = $obj_klant;
-        $this->arr_producten = $arr_producten;
+        $this->email = $email;
         $this->str_bestellingsDatum = $str_bestellingsDatum;
         $this->str_afhaalDatum = $str_afhaalDatum;
         $this->str_status = $str_status;
