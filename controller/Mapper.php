@@ -26,8 +26,8 @@ class Mapper{
         $values = $object->toArray();
 
         $fieldNames =array_keys($values);
-pr($values);
-        pr($fieldNames);
+
+
         $queryArguments = $this->createQueryArguments($values);
 
         $query = "INSERT INTO $this->_table (" . implode(', ', $fieldNames) . ") VALUES (:" . implode(', :', $fieldNames) . ")";

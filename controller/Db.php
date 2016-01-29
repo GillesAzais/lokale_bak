@@ -33,8 +33,7 @@ class Db{
         }
 
     public function execute($sql,$params){
-
-        if(!is_array($params)){
+           if(!is_array($params)){
             $params = [$params];
         }
         try {

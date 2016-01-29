@@ -29,14 +29,17 @@ class BestelController extends Controller{
         include('view/bestel.php');
     }
 
-    public function bestelling(){
-        $this->bestellingMapper->add(new Bestelling($_SESSION['email'],$date=date('Y-m-d'),null,"besteld"));
+    public function voegToeAanWinkelwagen(){
 
-        foreach ($_POST['besetllingsLijn'] as $key => $bestellingsLijn) {
 
-          $this->bestellingLijnMapper->add(new BestellingsLijn($this->bestellingMapper->getBestellingsIdForEmail($_SESSION['email'],$date),$key,$bestellingsLijn['aantal']));
-    }
-        include('view/confirm.php');
+          foreach ($_POST['besetllingsLijn'] as $key=>$bestellingsLijn) {
+              $_COOKIE['producten'][$key]['id']=$bestellingsLijn['id'];
+              $_COOKIE['producten'][$key]['naam']=$bestellingsLijn['naam'];
+              $_COOKIE['producten'][$key]['aantal']=$bestellingsLijn['aantal'];
+              $_COOKIE['producten'][$key]['prijs']=$bestellingsLijn['prijs'];
+              $_COOKIE['producten'][$key]['totaalPrijs']=intval($bestellingsLijn['aantal'])*intval($bestellingsLijn['prijs']);
+          }
+        include('view/winkelWagen.php');
 }
 
 

@@ -10,10 +10,10 @@ class Bestelling extends Entity
 {
 
     private $id;
-    private $email;
-    private $str_bestellingsDatum;
-    private $str_afhaalDatum = null;
-    private $str_status;
+    protected $email;
+    protected $str_bestellingsDatum;
+    protected $str_afhaalDatum = null;
+    protected $str_status;
 
     /**
      * Bestellingen constructor.

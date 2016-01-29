@@ -27,6 +27,7 @@ function pr($var){
     var_dump($var);
     echo "</pre>";
 }
+setcookie('producten');
 session_start();
 $frontcontroller = new FrontController();
 $frontcontroller->run();

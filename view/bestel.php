@@ -13,7 +13,7 @@
             </div><!-- /input-group -->
         </div><!-- /.col-lg-2 -->
     </div><!-- /.row -->
-<form action="<?php echo baseUrl('bestel/bestelling')?>" method="post">
+<form action="<?php echo baseUrl('bestel/voegToeAanWinkelwagen')?>" method="post">
 <?php foreach ($products as $item):?>
     <div class="row">
         <div class="col-lg-2">
@@ -33,6 +33,6 @@
   </div><!-- /.col-lg-2 -->
 </div><!-- /.row -->
 <?php endforeach;?>
-    <input type="submit"/>
+    <input type="submit" value="Voeg toe aan winkelwagen">
 </form>
 <?php footer();?>
