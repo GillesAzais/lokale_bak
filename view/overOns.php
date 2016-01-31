@@ -1,3 +1,4 @@
-<?php head(); menu()?>
+<?php head();
+    menu() ?>
 
-<?php footer();?>
+<?php footer(); ?>

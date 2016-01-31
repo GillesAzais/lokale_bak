@@ -1,5 +1,5 @@
 <?php head();
-menu();?>
+    menu();?>
 <div class="container">
     <div class="row">
         <div class="col-lg-12">
@@ -9,5 +9,5 @@ menu();?>
 </div>
 
 
-<?php footer();?>
+<?php footer(); ?>
 
