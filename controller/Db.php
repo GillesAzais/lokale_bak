@@ -30,7 +30,16 @@
 
         public function queryAll($sql, $type, $args = []){
             $stmt = $this->execute($sql, $args);
-            return $stmt->fetchAll(PDO::FETCH_CLASS, $type);
+            $objects =[];
+            $i = 0;
+            foreach($stmt->fetchAll(PDO::FETCH_NUM) as $obj){
+            $i++;
+                $objects[]= new $type(...$obj);
+
+            }
+
+            return $objects;
+
         }
 
         public function execute($sql, $params){
@@ -39,17 +48,25 @@
             }
             try{
                 $stmt = $this->dbh->prepare($sql);
+
                 $stmt->execute($params);
+
                 $stmt->setFetchMode(PDO::FETCH_ASSOC);
             }catch(PDOException $e){
                 error_log($e->getMessage());
             }
+
+           /* pr($sql);
+            pr($params);*/
             return $stmt;
         }
 
         public function queryOne($sql, $type, $args = []){
             $stmt = $this->execute($sql, $args);
-            $object = $stmt->fetchObject($type);
+            $params = $stmt->fetch(PDO::FETCH_NUM);
+
+            $object = new $type(...$params);
+
             return $object;
         }
 

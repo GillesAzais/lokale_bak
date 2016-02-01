@@ -19,14 +19,14 @@
                     <a href="<?php echo baseUrl('contact/index') ?>">Contact</a>
                 </li>
                 <li>
-                    <a href="<?php echo baseUrl('bestel/index') ?>">Bestel</a>
+                    <a href="<?php echo baseUrl('bestel/bestellingen') ?>">Bestel</a>
                 </li>
+
             </ul>
             <div class="navbar-form navbar-right">
-               <a href="<?php echo baseUrl('winkelWagen/index')?>"> <button class="shopping-cart" type="button" class="btn btn-default" aria-label="Left Align">
-                  <img src="<?php echo baseUrl('view/sc.png')?>"
-                </button></a>
-            </div>
+            <form  action="<?php echo baseUrl('winkelWagen/index')?>" method="post">
+                <input type="image" value="submit" src="<?php echo baseUrl('view/sc.png')?>" class="btn btn-default shopping-cart" alt="submit">
+            </form>
         </div>
         <!-- /.navbar-collapse -->
     </div>

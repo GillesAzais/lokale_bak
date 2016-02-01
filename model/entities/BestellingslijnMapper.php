@@ -10,4 +10,9 @@
         public function __construct(){
             parent::__construct('bestellingsorders', 'Bestellingslijn');
         }
+
+        public function getOrderLijnForBestellingsId($id){
+            $qry= "SELECT * FROM $this->_table where bestellingsId = ?";
+            return $this->_db->queryAll($qry,$this->_type,$id);
+        }
     }

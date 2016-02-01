@@ -1,6 +1,7 @@
 <?php head();
     menu() ?>
-
+    <div class="container">
+<h1>Uw bestellingen</h1>
     <div class="row">
         <div class="col-lg-2">
             <label>TYPE</label>
@@ -19,7 +20,6 @@
         </div>
         <!-- /.col-lg-2 -->
     </div><!-- /.row -->
-
     <form action="<?php echo baseUrl('bestel/voegToeAanWinkelwagen') ?>"
           method="post">
         <?php foreach($products as $item): ?>
@@ -52,4 +52,5 @@
         <input type="submit"
                value="Voeg toe aan winkelwagen">
     </form>
+    </div>
 <?php footer(); ?>

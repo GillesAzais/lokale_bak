@@ -16,4 +16,15 @@
             $id = $this->_db->queryScalar($qry, [$email, $date]);
             return $id;
         }
+
+        public function getBestellingenForEmail($email){
+            $qry = "SELECT * FROM $this->_table WHERE email = ?";
+            return ($this->_db->queryAll($qry,$this->_type,$email));
+        }
+
+        public function getDateForBestellingsId($id){
+            $qry = "SELECT bestellingsDatum FROM $this->_table WHERE id = ?";
+            $id = $this->_db->queryScalar($qry, $id);
+            return $id;
+        }
     }

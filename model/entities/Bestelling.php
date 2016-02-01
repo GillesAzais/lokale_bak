@@ -7,96 +7,66 @@
      * Time: 1:46 PM
      */
     class Bestelling extends Entity{
-        protected $email;
-        protected $str_bestellingsDatum;
-        protected $str_afhaalDatum = null;
-        protected $str_status;
-        private $id;
+    protected $afhaalDatum;
+    protected $bestellingsDatum;
+    protected $bestellingsId;
+    protected $email;
+    protected $status;
 
         /**
-         * Bestellingen constructor.
-         * @param $obj_klant
-         * @param $arr_producten
-         * @param $str_bestellingsDatum
-         * @param null $str_afhaalDatum
-         * @param $str_status
+         * Bestelling constructor.
+         * @param $afhaalDatum
+         * @param $bestellingsDatum
+         * @param $bestellingsId
+         * @param $email
+         * @param $status
          */
-        public function __construct($id, $email, $str_bestellingsDatum, $str_afhaalDatum, $str_status){
-            $this->id = $id;
+        public function __construct( $bestellingsId, $email,$bestellingsDatum,$afhaalDatum,  $status){
+
+            $this->afhaalDatum = $afhaalDatum;
+            $this->bestellingsDatum = $bestellingsDatum;
+            $this->bestellingsId = $bestellingsId;
             $this->email = $email;
-            $this->str_bestellingsDatum = $str_bestellingsDatum;
-            $this->str_afhaalDatum = $str_afhaalDatum;
-            $this->str_status = $str_status;
+            $this->status = $status;
+
         }
 
         /**
          * @return mixed
          */
-        public function getObjKlant(){
-            return $this->obj_klant;
-        }
-
-        /**
-         * @param mixed $obj_klant
-         */
-        public function setObjKlant($obj_klant){
-            $this->obj_klant = $obj_klant;
+        public function getAfhaalDatum(){
+            return $this->afhaalDatum;
         }
 
         /**
          * @return mixed
          */
-        public function getArrProducten(){
-            return $this->arr_producten;
-        }
-
-        /**
-         * @param mixed $arr_producten
-         */
-        public function setArrProducten($arr_producten){
-            $this->arr_producten = $arr_producten;
+        public function getBestellingsDatum(){
+            return $this->bestellingsDatum;
         }
 
         /**
          * @return mixed
          */
-        public function getStrBestellingsDatum(){
-            return $this->str_bestellingsDatum;
-        }
-
-        /**
-         * @param mixed $str_bestellingsDatum
-         */
-        public function setStrBestellingsDatum($str_bestellingsDatum){
-            $this->str_bestellingsDatum = $str_bestellingsDatum;
-        }
-
-        /**
-         * @return null
-         */
-        public function getStrAfhaalDatum(){
-            return $this->str_afhaalDatum;
-        }
-
-        /**
-         * @param null $str_afhaalDatum
-         */
-        public function setStrAfhaalDatum($str_afhaalDatum){
-            $this->str_afhaalDatum = $str_afhaalDatum;
+        public function getBestellingsId(){
+            return $this->bestellingsId;
         }
 
         /**
          * @return mixed
          */
-        public function getStrStatus(){
-            return $this->str_status;
+        public function getEmail(){
+            return $this->email;
         }
 
         /**
-         * @param mixed $str_status
+         * @return mixed
          */
-        public function setStrStatus($str_status){
-            $this->str_status = $str_status;
+        public function getStatus(){
+            return $this->status;
         }
+
+     
     }
+
 

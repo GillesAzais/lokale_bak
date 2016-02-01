@@ -12,39 +12,25 @@
         protected $aantal;
         private $orderId;
 
-        public function __construct($bestellingsId, $productId, $aantal, $orderId){
+        /**
+         * Bestellingslijn constructor.
+         * @param $bestellingsId
+         * @param $productId
+         * @param $aantal
+         * @param $orderId
+         */
+        public function __construct($bestellingsId,$aantal,$productId ){
             $this->bestellingsId = $bestellingsId;
             $this->productId = $productId;
             $this->aantal = $aantal;
-            $this->orderId = $orderId;
+
         }
 
         /**
          * @return mixed
          */
         public function getBestellingsId(){
-            return $this->$bestellingsId;
-        }
-
-        /**
-         * @param mixed $bestellingsId
-         */
-        public function setBestellingsId($bestellingsId){
-            $this->$bestellingsId = $bestellingsId;
-        }
-
-        /**
-         * @return mixed
-         */
-        public function getOrderId(){
-            return $this->orderId;
-        }
-
-        /**
-         * @param mixed $orderId
-         */
-        public function setOrderId($orderId){
-            $this->orderId = $orderId;
+            return $this->bestellingsId;
         }
 
         /**
@@ -55,13 +41,6 @@
         }
 
         /**
-         * @param mixed $productId
-         */
-        public function setProductId($productId){
-            $this->productId = $productId;
-        }
-
-        /**
          * @return mixed
          */
         public function getAantal(){
@@ -69,9 +48,11 @@
         }
 
         /**
-         * @param mixed $aantal
+         * @return mixed
          */
-        public function setAantal($aantal){
-            $this->aantal = $aantal;
+        public function getOrderId(){
+            return $this->orderId;
         }
+
+
     }

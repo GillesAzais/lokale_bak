@@ -22,6 +22,7 @@
 
         public function index(){
             $products = $this->productMapper->getAll();
+
             include('view/bestel.php');
         }
 
@@ -34,5 +35,25 @@
                 $_SESSION['producten'][ $key ]['totaalPrijs'] = intval($bestellingsLijn['aantal']) * intval($bestellingsLijn['prijs']);
             }
             include('view/winkelWagen.php');
+        }
+
+        public function bestellingen(){
+          $_SESSION['bestellingen'] = $this->bestellingMapper->getBestellingenForEmail($_SESSION['email']);
+
+            include('view/bestellingen.php');
+
+        }
+
+        public function orderlijnDetail($id){
+            $orderlijnen = $this->bestellingLijnMapper->getOrderlijnForBestellingsId($id);
+            $producten =[];
+
+            foreach($orderlijnen as $key => $item){
+                $producten[$key]['product']=$this->productMapper->getProductById($item->getProductId());
+                $producten[$key]['aantal']= $item->getAantal();
+            }
+            $_SESSION['orderlijn']=$producten;
+            $_SESSION['orderLijnDate'] = $this->bestellingMapper->getDateForBestellingsId($id);
+            include('view/detail.php');
         }
     }

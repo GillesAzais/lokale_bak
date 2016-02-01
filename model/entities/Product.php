@@ -12,6 +12,18 @@
         private $prijs;
 
         /**
+         * Product constructor.
+         * @param $productId
+         * @param $productNaam
+         * @param $prijs
+         */
+        public function __construct($prijs,$productNaam,$productId){
+            $this->productId = $productId;
+            $this->productNaam = $productNaam;
+            $this->prijs = $prijs;
+        }
+
+        /**
          * @return mixed
          */
         public function getProductId(){

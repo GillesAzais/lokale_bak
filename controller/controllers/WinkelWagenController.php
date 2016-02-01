@@ -22,14 +22,17 @@
         }
 
         public function bestel(){
-            $this->bestellingMapper->add(new Bestelling(null, $_SESSION['email'], $date = date('Y-m-d'), null, "besteld"));
+            $this->bestellingMapper->add(new Bestelling(null,$_SESSION['email'], $date = date('Y-m-d'),null , "besteld"));
             $error = false;
             foreach($_POST['bestellingsLijn'] as $key => $bestellingsLijn){
                 if(!preg_match('/[0-9]/', $bestellingsLijn['aantal'])){
                     $error = true;
                     break;
                 }else{
-                    $this->bestellingsLijnMapper->add(new BestellingsLijn($this->bestellingMapper->getBestellingsIdForEmail($_SESSION['email'], $date), $key, $bestellingsLijn['aantal'], null));
+                    $b=new BestellingsLijn($this->bestellingMapper->getBestellingsIdForEmail($_SESSION['email'], $date),$key,  $bestellingsLijn['aantal']);
+
+
+                    $this->bestellingsLijnMapper->add($b);
                 }
             }
             if($error){

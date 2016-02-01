@@ -12,6 +12,9 @@
           <option name="SPACES_AROUND_VAR_WITHIN_BRACKETS" value="true" />
           <option name="FORCE_SHORT_DECLARATION_ARRAY_STYLE" value="true" />
         </PHPCodeStyleSettings>
+        <XML>
+          <option name="XML_LEGACY_SETTINGS_IMPORTED" value="true" />
+        </XML>
         <codeStyleSettings language="PHP">
           <option name="KEEP_LINE_BREAKS" value="false" />
           <option name="KEEP_BLANK_LINES_IN_DECLARATIONS" value="0" />
@@ -51,4 +54,3 @@
     <option name="USE_PER_PROJECT_SETTINGS" value="true" />
   </component>
 </project>
-

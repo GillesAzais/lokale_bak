@@ -19,8 +19,7 @@
 
         public function add($object){
             $values = $object->toArray();
-            /* pr($object);
-             pr($values);*/
+
             $fieldNames = array_keys($values);
             $queryArguments = $this->createQueryArguments($values);
             $query = "INSERT INTO $this->_table (" . implode(', ', $fieldNames) . ") VALUES (:" . implode(', :', $fieldNames) . ")";
@@ -92,7 +91,8 @@
 
         public function getAll(){
             $qry = "SELECT * FROM $this->_table";
-            return $this->_db->queryAll($qry, $this->_type);
+            return ($this->_db->queryAll($qry, $this->_type));
+
         }
 
         public function get($email){

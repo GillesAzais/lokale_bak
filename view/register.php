@@ -1,5 +1,7 @@
 <?php head();
     menu() ?>
+    <div class="container">
+    <h1>Registratie</h1>
     <form action="<?php echo baseUrl('register/register') ?>"
           method="post">
         <fieldset class="form-group">
@@ -49,4 +51,5 @@
                 class="btn btn-primary">Submit
         </button>
     </form>
+    </div>
 <?php footer(); ?>

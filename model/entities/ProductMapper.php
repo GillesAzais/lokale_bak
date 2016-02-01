@@ -10,4 +10,10 @@
         public function __construct(){
             parent::__construct('producten', 'Product');
         }
+
+        public function getProductById($id){
+            $qry="SELECT * FROM $this->_table WHERE productId = ?";
+
+            return $this->_db->queryOne($qry,$this->_type,intval($id));
+        }
     }
