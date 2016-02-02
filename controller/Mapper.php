@@ -91,6 +91,7 @@
 
         public function getAll(){
             $qry = "SELECT * FROM $this->_table";
+
             return ($this->_db->queryAll($qry, $this->_type));
 
         }

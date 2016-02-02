@@ -19,11 +19,11 @@
          * @param $aantal
          * @param $orderId
          */
-        public function __construct($bestellingsId,$aantal,$productId ){
+        public function __construct($bestellingsId,$orderId,$productId ,$aantal){
             $this->bestellingsId = $bestellingsId;
             $this->productId = $productId;
             $this->aantal = $aantal;
-
+            $this->orderId = $orderId;
         }
 
         /**

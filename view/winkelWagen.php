@@ -4,7 +4,7 @@
     <h2>Winkelwagen</h2>
 
     <?php if (!empty($_SESSION ['producten'])):?>
-
+<div>Datum: <?php echo $_SESSION['date']?></div>
     <table class="table table-striped">
         <tr>
             <th>type</th>
@@ -18,7 +18,9 @@
 
         <tbody>
 
+
         <?php foreach($_SESSION['producten'] as $producten): ?>
+            <?php;?>
             <tr>
                 <td><?php echo $producten['naam'] ?></td>
                 <td><?php echo $producten['prijs'] ?></td>

@@ -27,7 +27,8 @@
         }
 
         public function voegToeAanWinkelwagen(){
-            foreach($_POST['besetllingsLijn'] as $key => $bestellingsLijn){
+                $_SESSION['BestellingDatum'] = $_POST['date'];
+            foreach($_POST['bestellingsLijn'] as $key => $bestellingsLijn){
                 $_SESSION['producten'][ $key ]['id'] = $bestellingsLijn['id'];
                 $_SESSION['producten'][ $key ]['naam'] = $bestellingsLijn['naam'];
                 $_SESSION['producten'][ $key ]['aantal'] = $bestellingsLijn['aantal'];

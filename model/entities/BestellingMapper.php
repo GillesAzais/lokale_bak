@@ -23,8 +23,14 @@
         }
 
         public function getDateForBestellingsId($id){
-            $qry = "SELECT bestellingsDatum FROM $this->_table WHERE id = ?";
+            $qry = "SELECT bestellingsDatum FROM $this->_table WHERE bestellingsId = ?";
             $id = $this->_db->queryScalar($qry, $id);
+            return $id;
+        }
+
+        public function bestellingOpDatumExists($date){
+            $qry = "SELECT 1 FROM $this->_table WHERE EXISTS ( SELECT * FROM $this->_table WHERE bestellingsDatum = ?)";
+            $id = $this->_db->queryScalar($qry, $date);
             return $id;
         }
     }

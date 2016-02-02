@@ -33,8 +33,8 @@
             $objects =[];
             $i = 0;
             foreach($stmt->fetchAll(PDO::FETCH_NUM) as $obj){
-            $i++;
-                $objects[]= new $type(...$obj);
+
+             $objects[]= new $type(...$obj);
 
             }
 
@@ -56,8 +56,8 @@
                 error_log($e->getMessage());
             }
 
-           /* pr($sql);
-            pr($params);*/
+            pr($sql);
+            pr($params);
             return $stmt;
         }
 

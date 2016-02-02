@@ -17,7 +17,7 @@
          * @param $productNaam
          * @param $prijs
          */
-        public function __construct($prijs,$productNaam,$productId){
+        public function __construct($productId,$productNaam,$prijs){
             $this->productId = $productId;
             $this->productNaam = $productNaam;
             $this->prijs = $prijs;

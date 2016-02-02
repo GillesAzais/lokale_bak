@@ -17,30 +17,41 @@
         }
 
         public function index(){
-
             include('view/winkelWagen.php');
         }
 
         public function bestel(){
-            $this->bestellingMapper->add(new Bestelling(null,$_SESSION['email'], $date = date('Y-m-d'),null , "besteld"));
-            $error = false;
-            foreach($_POST['bestellingsLijn'] as $key => $bestellingsLijn){
-                if(!preg_match('/[0-9]/', $bestellingsLijn['aantal'])){
-                    $error = true;
-                    break;
-                }else{
-                    $b=new BestellingsLijn($this->bestellingMapper->getBestellingsIdForEmail($_SESSION['email'], $date),$key,  $bestellingsLijn['aantal']);
+pr();
+            $date = date_create_from_format('Y-m-d',$_POST['mont'].'-'.$_POST['day']);
+            if(!$this->checkBestellingOpDag(date('Y-m-d'))){
+                $this->bestellingMapper->add(new Bestelling(null, $_SESSION['email'], $date , null,
+                    "besteld"));
+                $error = false;
+                foreach($_POST['bestellingsLijn'] as $key => $bestellingsLijn){
+                    if(!preg_match('/[0-9]/', $bestellingsLijn['aantal'])){
+                        $error = true;
+                        break;
+                    }else{
+                        $b = new BestellingsLijn($this->bestellingMapper->getBestellingsIdForEmail($_SESSION['email'],
+                            $date), null, $key, $bestellingsLijn['aantal']);
 
-
-                    $this->bestellingsLijnMapper->add($b);
+                        $this->bestellingsLijnMapper->add($b);
+                    }
                 }
-            }
-            if($error){
-                $_GET['message'] = 'Verkeerde waarde ingevuld bij aantal';
+                if($error){
+                    $_GET['message'] = 'Verkeerde waarde ingevuld bij aantal';
+                }else{
+                    $_GET['message'] = 'Uw bestelling is opgenomen';
+                }
+
             }else{
-                $_GET['message'] = 'Uw bestelling is opgenomen';
-            }
+    $_GET['message'] = 'Uw hebt al een bestelling geplaatst';
+         }
             include('view/message.php');
+    }
+
+        private function checkBestellingOpDag($date){
+            return $this->bestellingMapper->bestellingOpDatumExists($date);
         }
     }
 
