@@ -15,19 +15,38 @@
         }
 
         public function login(){
-            if($this->checkLogin() && $klant = $this->userExists()){
-                $_SESSION['loggedIn'] = true;
-                $_SESSION['email'] = $_POST['email'];
-                header('location:' . baseUrl('home/index'));
+      
+              if($this->checkLogin()){
+                if($klant = $this->userExists()){
+                    if($this->checkPass($klant)){
+                        $_SESSION['loggedIn'] = true;
+                        $_SESSION['email'] = $_POST['email'];
+                                                
+                        redirect('home/index');
+                       
+                    }else{
+                       $this->message('Passwoord verkeerd');
+                    }
+                 
+                }
+                
             }else{
-                include('view/error.php');
+              $this->message('Gelieve alles velden in te vullen');
             }
+          
+           
+        }
+
+        public function checkPass($klant){
+       
+            return $klant->getStrPasswoord() == sha1($_POST['pass']);
+
         }
 
         public function checkLogin(){
             $bool = false;
-            if(!isset($_POST['email']) || !isset($_POST['pass'])){
-                $this->error('Gelievan alle velde in te vullen');
+            if(empty($_POST['email']) || empty($_POST['pass'])){
+               $bool = false;
             }else{
                 $bool = true;
             }
@@ -36,9 +55,17 @@
 
         public function userExists(){
             if(!$klant = $this->klantMapper->get($_POST['email'])){
-                ;
-                $this->error('Email en/of passwoord is niet correct');
+                $_GET['message'] = 'Email en/of passwoord is niet correct';
+            }else{
+                return $klant;
             }
-            return $klant;
+
+        }
+
+        public function logout(){
+            unset($_SESSION['email']);
+            $_SESSION['loggedIn'] = false;
+
+            redirect('home/index');
         }
     }

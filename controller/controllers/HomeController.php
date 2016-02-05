@@ -8,6 +8,12 @@
      */
     class HomeController extends Controller{
         public function index(){
+           
             include('view/home.php');
+           
+        }
+
+        public function admin(){
+            include('view/adminLogIn.php');
         }
     }

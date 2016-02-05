@@ -21,9 +21,9 @@
         }
 
         public function bestel(){
-pr();
-            $date = date_create_from_format('Y-m-d',$_POST['mont'].'-'.$_POST['day']);
-            if(!$this->checkBestellingOpDag(date('Y-m-d'))){
+
+            $date = $_SESSION['BestellingDatum'];
+            if(!$this->checkBestellingOpDag($date,$_SESSION['email'])){
                 $this->bestellingMapper->add(new Bestelling(null, $_SESSION['email'], $date , null,
                     "besteld"));
                 $error = false;
@@ -39,19 +39,22 @@ pr();
                     }
                 }
                 if($error){
+
                     $_GET['message'] = 'Verkeerde waarde ingevuld bij aantal';
                 }else{
                     $_GET['message'] = 'Uw bestelling is opgenomen';
                 }
 
             }else{
-    $_GET['message'] = 'Uw hebt al een bestelling geplaatst';
+
+    $_GET['message'] = 'Uw hebt al een bestelling geplaatst op deze datum';
          }
+            unset($_SESSION['producten']);
             include('view/message.php');
     }
 
-        private function checkBestellingOpDag($date){
-            return $this->bestellingMapper->bestellingOpDatumExists($date);
+        private function checkBestellingOpDag($date,$email){
+            return $this->bestellingMapper->bestellingOpDatumExists($date,$email);
         }
     }
 

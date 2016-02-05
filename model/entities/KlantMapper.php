@@ -10,4 +10,8 @@
         public function __construct(){
             parent::__construct('klanten', 'Klant');
         }
+        public function get($email){
+            $qry = "SELECT * FROM $this->_table WHERE email = ?";
+            return $this->_db->queryOne($qry, $this->_type, $email);
+        }
     }

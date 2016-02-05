@@ -13,7 +13,21 @@
             $this->loader = Loader::getInstance();
         }
 
-        protected function error($message){
-            $_POST['Errors'][] = $message;
+        protected function matchLetters($var){
+            if(!preg_match('/^[a-z A-Z]*$/',$var)){
+           $this->message("Gelieve de correcte waarde in te vullen");
+             }
+        }
+        
+        protected function matchDigits($var){
+            if(!preg_match('/^\b([1-9]+)0*\b$/',$var)){
+               $this->message("Gelieve de correcte waarde in te vullen");
+            }
+        }
+        
+        protected function message($message){
+            $_GET['message'] = $message;
+            include('view/message.php');
+            die();
         }
     }

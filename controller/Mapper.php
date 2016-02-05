@@ -75,9 +75,10 @@
             return $whereArguments;
         }
 
-        public function delete($where = []){
+        public function delete($className,$where = []){
+
             if(!is_array($where)){
-                $where = ['id' => $where];
+                $where = [$className.'sid' => $where];
             }
             $wherefields = $this->createWhereFields($where);
             $queryArguments = $this->createWhereArguments($where);
@@ -96,8 +97,5 @@
 
         }
 
-        public function get($email){
-            $qry = "SELECT * FROM $this->_table WHERE email = ?";
-            return $this->_db->queryOne($qry, $this->_type, $email);
-        }
+        
     }

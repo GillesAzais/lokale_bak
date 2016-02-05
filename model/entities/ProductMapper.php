@@ -11,6 +11,10 @@
             parent::__construct('producten', 'Product');
         }
 
+        public function getAllOrderedByDate(){
+            $qry="SELECT * FROM $this->_table ORDER BY bestellingsDatum desc";
+            return $this->_db->queryAll();
+        }
         public function getProductById($id){
             $qry="SELECT * FROM $this->_table WHERE productId = ?";
 

@@ -26,10 +26,13 @@
         var_dump($var);
         echo "</pre>";
     }
+    
+
 
 
     session_start();
-
+    
+     
 
 
     $frontcontroller = new FrontController();

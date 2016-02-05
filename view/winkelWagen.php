@@ -4,7 +4,7 @@
     <h2>Winkelwagen</h2>
 
     <?php if (!empty($_SESSION ['producten'])):?>
-<div>Datum: <?php echo $_SESSION['date']?></div>
+<div>Bestelling voor: <?php echo $_SESSION['BestellingDatum']?></div>
     <table class="table table-striped">
         <tr>
             <th>type</th>
@@ -13,12 +13,8 @@
             <th>totaalprijs</th>
         </tr>
         <thead>
-
         </thead>
-
         <tbody>
-
-
         <?php foreach($_SESSION['producten'] as $producten): ?>
             <?php;?>
             <tr>
@@ -30,7 +26,6 @@
         <?php endforeach ?>
         </tbody>
     </table>
-
     <form action="<?php echo baseUrl('WinkelWagen/bestel') ?>"
           method="post">
         <?php foreach($_SESSION['producten'] as $producten): ?>
@@ -39,7 +34,6 @@
         <input type="submit" value="Bestel">
     </form>
     <?php else: ?>
-
     <h3>Uw winkelwagen is leeg</h3>
         <?php endif?>
     </div>

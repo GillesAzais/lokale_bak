@@ -29,7 +29,7 @@
          * @param $str_passwoord
          * @param $bool_geblokeerd
          */
-        public function __construct($str_email, $str_naam, $str_voornaam, $str_straat, $str_huisnr, $str_postcode, $str_woonplaats, $bool_geblokeerd){
+        public function __construct($str_email, $str_voornaam, $str_naam, $str_straat, $str_huisnr, $str_postcode, $str_woonplaats, $pass, $bool_geblokeerd){
             $this->str_email = $str_email;
             $this->str_naam = $str_naam;
             $this->str_vnaam = $str_voornaam;
@@ -37,8 +37,8 @@
             $this->str_huisnr = $str_huisnr;
             $this->str_postcode = $str_postcode;
             $this->str_woonplaats = $str_woonplaats;
-            $this->str_passwoord = $this->generatePassword();
-            $this->bool_blocked = false;
+            $this->str_passwoord = $pass;
+            $this->bool_blocked =  $bool_geblokeerd;
         }
 
         public function generatePassword(){
@@ -47,7 +47,7 @@
             for($i = 0; $i < mt_rand(10, 20); $i++){
                 shuffle($arr);
             }
-            return substr(implode("", $arr), 0, 5);
+           $this->setStrPasswoord(substr(implode("", $arr), 0, 5));
         }
 
         /**
@@ -164,5 +164,8 @@
          */
         public function setStrPasswoord($str_passwoord){
             $this->str_passwoord = $str_passwoord;
+        }
+        public function isBlocked(){
+            return $this->bool_blocked;
         }
     }

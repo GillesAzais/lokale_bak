@@ -18,9 +18,9 @@
                 <?php foreach($_SESSION['orderlijn'] as $item): ?>
 <tr>
                           <td><?php echo $item['product']->getProductNaam() ?></td>
-                            <td><?php echo $item['product']->getPrijs() ?></td>
-                        <td><?php echo $item['aantal'] ?></td>
-                            <td><?php echo $item['aantal']*$item['product']->getPrijs() ?></td>
+                          <td><?php echo $item['product']->getPrijs() ?></td>
+                          <td><?php echo $item['aantal'] ?></td>
+                          <td><?php echo $item['aantal']*$item['product']->getPrijs() ?></td>
 </tr>
                 <?php endforeach; ?>
                 </tbody>

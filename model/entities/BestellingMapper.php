@@ -18,7 +18,7 @@
         }
 
         public function getBestellingenForEmail($email){
-            $qry = "SELECT * FROM $this->_table WHERE email = ?";
+            $qry = "SELECT * FROM $this->_table WHERE email = ? ORDER BY bestellingsDatum desc";
             return ($this->_db->queryAll($qry,$this->_type,$email));
         }
 
@@ -28,9 +28,9 @@
             return $id;
         }
 
-        public function bestellingOpDatumExists($date){
-            $qry = "SELECT 1 FROM $this->_table WHERE EXISTS ( SELECT * FROM $this->_table WHERE bestellingsDatum = ?)";
-            $id = $this->_db->queryScalar($qry, $date);
+        public function bestellingOpDatumExists($date,$email){
+            $qry = "SELECT 1 FROM $this->_table WHERE bestellingsDatum = ? and email = ?";
+            $id = $this->_db->queryScalar($qry, [$date,$email]);
             return $id;
         }
     }

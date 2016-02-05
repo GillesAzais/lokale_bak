@@ -30,13 +30,17 @@
                     <input type="text"
                            class="form-control"
                            name="email"
-                           placeholder="Gebruikersnaam">
+                           <?php if(isset($_COOKIE['email'])){
+                            echo "value=".$_COOKIE['email']; 
+}?>
+
+                           placeholder="Gebruikersnaam" required>
                 </div>
                 <div class="form-group">
-                    <input type="text"
+                    <input type="password"
                            class="form-control"
                            name="pass"
-                           placeholder="Passwoord">
+                           placeholder="Passwoord"  autocomplete="off" required>
                 </div>
                 <button type="submit"
                         class="btn btn-info btn-sm">aanmelden
