@@ -8,7 +8,7 @@
 
         </div>
         <!-- Collect the nav links, forms, and other content for toggling -->
-        <div class="navbar-fixed-top">
+        <div class="navbar-top">
             <ul class="nav navbar-nav">
                 <li>
                     <a href="<?php echo baseUrl('home/index') ?>">Home</a>

@@ -2,7 +2,7 @@
     menu() ?>
 <div class="container">
     <h2>Winkelwagen</h2>
-
+	
     <?php if (!empty($_SESSION ['producten'])):?>
 <div>Bestelling voor: <?php echo $_SESSION['BestellingDatum']?></div>
     <table class="table table-striped">

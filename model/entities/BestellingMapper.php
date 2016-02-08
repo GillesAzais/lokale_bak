@@ -33,4 +33,5 @@
             $id = $this->_db->queryScalar($qry, [$date,$email]);
             return $id;
         }
+      
     }

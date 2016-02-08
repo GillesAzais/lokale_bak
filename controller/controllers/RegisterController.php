@@ -1,59 +1,93 @@
 <?php
 
-    /**
-     * Created by PhpStorm.
-     * User: gilles.azais
-     * Date: 1/25/2016
-     * Time: 2:05 PM
-     */
-    class RegisterController extends Controller{
-        private $klantenMapper;
+/**
+ * Created by PhpStorm.
+ * User: gilles.azais
+ * Date: 1/25/2016
+ * Time: 2:05 PM
+ */
+class RegisterController extends Controller
+{
 
-        public function __construct(){
-            parent::__construct();
-            $this->klantenMapper = $this->loader->getModelMapper('klant');
-        }
+    private $klantenMapper;
 
-        public function index(){
-            include('view/register.php');
-        }
+    public function __construct()
+    {
+        parent::__construct();
+        $this->klantenMapper = $this->loader->getModelMapper('klant');
+    }
 
-        public function register(){
-            if($this->registerValidation()){
-                $klant = new Klant($_POST['email'], $_POST['naam'], $_POST['voornaam'], $_POST['straat'], $_POST['huisnr'],
-                    $_POST['postcode'], $_POST['woonplaats'],$_POST['naam'],false);
-                $klant->generatePassword();
-                $_GET['pass'] = $klant->getStrPasswoord();
-                $klant->encryptPass();
-                $this->klantenMapper->add($klant);
-                $klant = null;
-                include('view/confirm.php');
-            }else{
-                $_GET['message']='Er is een fout gebeurt bij het inloggen gelieven contact op te nemen met de admin';
-                include('view/message.php');
-            }
-        }
+    public function index()
+    {
+        include ('view/register.php');
+    }
 
-        public function registerValidation(){
-            $bool = null;
-            if(empty($_POST['email']) || empty($_POST['naam']) || empty($_POST['voornaam']) || empty($_POST['straat']) || empty($_POST['huisnr']) || empty($_POST['postcode']) || empty($_POST['woonplaats'])){
-                 $_GET['message']='Gelieven alle velden in te vullen';
-                include('view/message.php');
-                $bool = false;
-            }else{
-                $this->matchLetters($_POST['naam']);
-                $this->matchLetters($_POST['voornaam']);
-                $this->matchLetters($_POST['straat']);
-                $this->matchLetters($_POST['woonplaats']);
-                $this->matchDigits($_POST['postcode']);
-                if(strlen($_POST['email']) > 30 || strlen($_POST['naam']) > 20 || strlen($_POST['voornaam']) > 20 || strlen($_POST['straat']) > 50 || strlen($_POST['postcode']) > 4 || strlen($_POST['woonplaats']) > 50){
-                    $_GET['message']='Gelieven de maximale lengte van uw velden te respecteren';
-                    include('view/message.php');
-                    $bool = false;
-                }else{
-                    $bool = true;
+    public function register()
+    {
+        if ($this->registerValidation()) {
+            foreach ($_POST as $key => $value) {
+                foreach ($value as $valueKey => $valueValue) {
+                    $_POST[$valueKey] = $valueValue;
                 }
             }
-            return $bool;
+            $klant = new Klant($_POST['email'], $_POST['naam'], $_POST['voornaam'], $_POST['straat'], $_POST['huisnr'], $_POST['postcode'], $_POST['woonplaats'], $_POST['naam'], false);
+            $klant->generatePassword();
+            $pass = $klant->getStrPasswoord();
+            $klant->encryptPass();
+            $this->klantenMapper->add($klant);
+            $klant = null;
+            $this->message("Great succes! Uw password is: " . $pass, "succes", "message.php");
+        } else {
+            $_GET['message'][] = 'Er is een fout gebeurt bij het inloggen gelieven contact op te nemen met de admin';
+            $this->message("'Er is een fout gebeurt bij het inloggen gelieven contact op te nemen met de admin", "danger");
         }
     }
+
+    public function registerValidation()
+    {
+        foreach ($_POST['text'] as $key => $value) {
+            if (empty($value)) {
+                $this->message('Gelieven alle velden in te vullen', 'danger', 'register.php');
+            } else {
+                $this->matchLetters($value, $key);
+            }
+        }
+        foreach ($_POST['digits'] as $key => $value) {
+            if (empty($value)) {
+                $this->message('Gelieven alle velden in te vullen', 'danger', 'register.php');
+            } else {
+                $this->matchDigits($value, $key);
+            }
+        }
+        foreach ($_POST['any'] as $key => $value) {
+            if (empty($value)) {
+                $this->message('Gelieven alle velden in te vullen', 'danger', 'register.php');
+            }
+        }
+        foreach ($_POST['email'] as $key => $value) {
+            if (empty($value)) {
+                $this->message('Gelieven alle velden in te vullen', 'danger', 'register.php');
+            } else {
+                $this->matchEmail($value, $key);
+            }
+        }
+         
+        
+        if (strlen($_POST['email']['email']) > 30 || strlen($_POST['text']['naam']) > 20 || strlen($_POST['text']['voornaam']) > 20 || strlen($_POST['text']['straat']) > 50 || strlen($_POST['digits']['postcode']) > 4 || strlen($_POST['text']['woonplaats']) > 50 || strlen($_POST['any']['huisnr'])>3 ) {
+            $this->message('Gelieven de maximale lengte van uw velden te respecteren', 'danger', 'register.php');
+        }
+        if ($this->klantenMapper->get($_POST['email']['email'])) {
+            
+       
+            $this->message('Dit email bestaat al', 'danger', 'register.php', 'email');
+        } 
+        if (isset($_GET['error'])) {
+            include ('view/register.php');
+            die();
+        }  
+        return true;
+    }         
+
+}
+
+    

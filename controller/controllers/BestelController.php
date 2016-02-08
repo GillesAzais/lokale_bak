@@ -31,10 +31,20 @@ class BestelController extends Controller
         $klant = $this->klantenMapper->get($_SESSION['email']);
         
         if ($klant->isBlocked()) {
-            $this->message('Uw bent momenteel geblokkeerd en kunt geen bestellingen plaatsen.');
+            $this->message('Uw bent momenteel geblokkeerd en kunt geen bestellingen plaatsen.',"danger");
         } else {
             $products = $this->productMapper->getAll();
             include ('view/bestel.php');
+        }
+    }
+    
+    public function checkBestellingen($key,$bestellingsLijn){
+        $this->matchDigits($bestellingsLijn['id'],$key);
+        $this->matchDigits($bestellingsLijn['aantal'],$key);
+        $this->matchLetters($bestellingsLijn['naam'],$key);
+        if(isset($_GET['error'])){
+           $this->index();
+           die();
         }
     }
 
@@ -50,9 +60,7 @@ class BestelController extends Controller
                 if (empty($bestellingsLijn['aantal'])) {
                     continue;
                 }
-                $this->matchDigits($bestellingsLijn['id']);
-                $this->matchDigits($bestellingsLijn['aantal']);
-                $this->matchLetters($bestellingsLijn['naam']);
+                $this->checkBestellingen($key,$bestellingsLijn);
                 $_SESSION['producten'][$key]['id'] = $bestellingsLijn['id'];
                 $_SESSION['producten'][$key]['naam'] = $bestellingsLijn['naam'];
                 $_SESSION['producten'][$key]['aantal'] = $bestellingsLijn['aantal'];

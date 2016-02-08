@@ -65,7 +65,7 @@ class Db
         } catch (PDOException $e) {
             error_log($e->getMessage());
         }
-        
+       
         return $stmt;
     }
 
